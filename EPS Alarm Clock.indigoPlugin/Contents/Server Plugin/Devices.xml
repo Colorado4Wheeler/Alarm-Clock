@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<!-- EPS (ColoradoFourWheeler) Plugin -->
+<Devices>
+	<Device type="custom" id="epsalarmclock">
+		<Name>Alarm Clock Control</Name>
+		<ConfigUI>
+			<Field type="menu" id="device" defaultValue="default">
+				<Label>Toggle device:</Label>
+				<List class="self" filter="onOffState" method="getDevicesWithStates" dynamicReload="true"/>
+			</Field>
+		
+			<Field id="stepIncrement" type="textfield" defaultValue="5">
+				<Label>Increment to change minutes:</Label>
+			</Field>
+			
+			<Field id="defaultDuration" type="textfield" defaultValue="90">
+				<Label>Alarm default duration (minutes):</Label>
+			</Field>
+			
+			<Field id="blinkLights" type="textfield" defaultValue="0">
+				<Label>Times to blink device:</Label>
+			</Field>
+			
+			<Field id="sep_general" type="separator" />
+			
+			<Field type="menu" id="onAlarmOn" defaultValue="default">
+				<Label>Alarm on action (optional):</Label>
+				<List class="indigo.actionGroups" />
+			</Field>
+			
+			<Field type="menu" id="onAlarmOff" defaultValue="default">
+				<Label>Alarm off action (optional):</Label>
+				<List class="indigo.actionGroups" />
+			</Field>
+			
+			<Field id="sep_actiongroups" type="separator" />
+			
+			<Field id="alarmSpeech" type="textfield" defaultValue="Up and at em sleepy head!">
+				<Label>Say when alarm goes off:</Label>
+			</Field>
+			
+			<Field id="speechRepeat" type="textfield" defaultValue="1" hidden="true">
+				<Label>Repeat speech seconds:</Label>
+			</Field>
+			
+			<Field id="nagTimes" type="textfield" defaultValue="3" hidden="true">
+				<Label>Times to repeat speech:</Label>
+			</Field>
+			
+			
+			<Field id="speechTest" type="button" tooltip="Test the speech through Indigo" >
+				<Label>
+				</Label>
+				<Title>Test Speech </Title>
+				<CallbackMethod>uiButtonClicked</CallbackMethod>
+			</Field>
+			
+			<Field id="sep_speech" type="separator" />
+		
+			<Field id="manualOff" type="textfield" defaultValue="0">
+				<Label>Manual off delay (minutes):</Label>
+			</Field>
+			
+			<Field id="sep_manualOff" type="separator" />
+			
+			<Field type="checkbox" id="militaryTime" defaultValue="false">
+				<Label> </Label>
+				<Description>Show times in 24 hour time</Description>
+			</Field>
+			
+			<Field id="sep_checkboxes" type="separator" />
+			
+			<Field type="checkbox" id="autoRecurring" defaultValue="false">
+				<Label> </Label>
+				<Description>Recurring alarm</Description>
+			</Field>
+			
+			<Field type="checkbox" id="uiOption" defaultValue="true">
+				<Label> </Label>
+				<Description>If not today, show "+xxD" for UI instead</Description>
+			</Field>
+			
+			<Field type="checkbox" id="enableDOW" defaultValue="false" >
+				<Label> </Label>
+				<Description>Set days of week via control page</Description>
+			</Field>
+			
+			<Field type="list" id="daysOfWeek" defaultValue="1,2,3,4,5,6,0" visibleBindingId="enableDOW" visibleBindingValue="false">
+				<Label>List:</Label>
+				<List>
+					<Option value="1">Monday</Option>
+					<Option value="2">Tuesday</Option>
+					<Option value="3">Wednesday</Option>
+					<Option value="4">Thursday</Option>
+					<Option value="5">Friday</Option>
+					<Option value="6">Saturday</Option>
+					<Option value="0">Sunday</Option>
+				</List>
+			</Field>
+			
+			
+			
+		</ConfigUI>
+		
+		<States>
+			<!-- All EPS plugins have this state and use it for the Indigo lists -->
+			<State id="statedisplay">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Current device state</TriggerLabel>
+				<ControlPageLabel>Current device state</ControlPageLabel>
+			</State>
+			
+			<State id="sep_statedisplay">
+				<ValueType>Separator</ValueType>
+			</State>
+			
+			<State id="isOn">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is On</TriggerLabel>
+				<ControlPageLabel>Alarm is On</ControlPageLabel>
+			</State>
+			
+			<State id="isActive">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm has triggered and is active</TriggerLabel>
+				<ControlPageLabel>Alarm has triggered and is active</ControlPageLabel>
+			</State>
+			
+			<State id="durationMinutes">
+				<ValueType>Number</ValueType>
+				<TriggerLabel>Alarm duration in minutes</TriggerLabel>
+				<ControlPageLabel>Alarm duration in minutes</ControlPageLabel>
+			</State>
+			
+			<State id="sep_misc">
+				<ValueType>Separator</ValueType>
+			</State>
+			
+			<State id="isMonday">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is set for Monday</TriggerLabel>
+				<ControlPageLabel>Alarm is set for Monday</ControlPageLabel>
+			</State>
+			
+			<State id="isTuesday">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is set for Tuesday</TriggerLabel>
+				<ControlPageLabel>Alarm is set for Tuesday</ControlPageLabel>
+			</State>
+			
+			<State id="isWednesday">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is set for Wednesday</TriggerLabel>
+				<ControlPageLabel>Alarm is set for Wednesday</ControlPageLabel>
+			</State>
+			
+			<State id="isThursday">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is set for Thursday</TriggerLabel>
+				<ControlPageLabel>Alarm is set for Thursday</ControlPageLabel>
+			</State>
+			
+			<State id="isFriday">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is set for Friday</TriggerLabel>
+				<ControlPageLabel>Alarm is set for Friday</ControlPageLabel>
+			</State>
+			
+			<State id="isSaturday">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is set for Saturday</TriggerLabel>
+				<ControlPageLabel>Alarm is set for Saturday</ControlPageLabel>
+			</State>
+			
+			<State id="isSunday">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Alarm is set for Sunday</TriggerLabel>
+				<ControlPageLabel>Alarm is set for Sunday</ControlPageLabel>
+			</State>
+			
+			<State id="sep_dow">
+				<ValueType>Separator</ValueType>
+			</State>
+			
+			<State id="startTime">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Start time as full date and time</TriggerLabel>
+				<ControlPageLabel>Start time as full date and time</ControlPageLabel>
+			</State>
+			
+			<State id="startTime.ui">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Current start time as HH:MM</TriggerLabel>
+				<ControlPageLabel>Current start time as HH:MM</ControlPageLabel>
+			</State>
+									
+			<State id="sep_startTime">
+				<ValueType>Separator</ValueType>
+			</State>
+			
+			<State id="endTime">
+				<ValueType>String</ValueType>
+				<TriggerLabel>End time as full date and time</TriggerLabel>
+				<ControlPageLabel>End time as full date and time</ControlPageLabel>
+			</State>
+			
+			<State id="endTime.ui">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Current end time as HH:MM</TriggerLabel>
+				<ControlPageLabel>Current end time as HH:MM</ControlPageLabel>
+			</State>
+			
+			<State id="startTime">
+				<ValueType>String</ValueType>
+				<TriggerLabel>End time as full date and time</TriggerLabel>
+				<ControlPageLabel>End time as full date and time</ControlPageLabel>
+			</State>
+			
+			<State id="sep_endTime">
+				<ValueType>Separator</ValueType>
+			</State>
+			
+			<State id="timeUntilOn">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Time until alarm turns on as HH:MM</TriggerLabel>
+				<ControlPageLabel>Time until alarm turns on as HH:MM</ControlPageLabel>
+			</State>
+			
+			<State id="timeUntilOff">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Time until alarm turns off as HH:MM</TriggerLabel>
+				<ControlPageLabel>Time until alarm turns off as HH:MM</ControlPageLabel>
+			</State>
+			
+			<State id="minutesUntilOn">
+				<ValueType>Number</ValueType>
+				<TriggerLabel>Minutes until alarm turns on</TriggerLabel>
+				<ControlPageLabel>Minutes until alarm turns on</ControlPageLabel>
+			</State>
+			
+			<State id="minutesUntilOff">
+				<ValueType>Number</ValueType>
+				<TriggerLabel>Minutes until alarm turns off</TriggerLabel>
+				<ControlPageLabel>Minutes until alarm turns off</ControlPageLabel>
+			</State>
+			
+			<State id="minutesUntilTimeout">
+				<ValueType>Number</ValueType>
+				<TriggerLabel>Minutes until alarm timeout</TriggerLabel>
+				<ControlPageLabel>Minutes until alarm timeout</ControlPageLabel>
+			</State>
+			
+			<State id="sep_developer">
+				<ValueType>Separator</ValueType>
+			</State>
+
+			<State id="lastCalc">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Reserved device state - no trigger</TriggerLabel>
+				<ControlPageLabel>Reserved device state - no control page</ControlPageLabel>
+			</State>
+			
+		</States>
+		<UiDisplayStateId>statedisplay</UiDisplayStateId>
+	</Device>
+</Devices>

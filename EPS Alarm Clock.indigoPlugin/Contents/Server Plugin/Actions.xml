@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!-- EPS (ColoradoFourWheeler) Plugin -->
+<Actions>
+	<!-- Defaults to the main ColoradoFourWheeler forum on Indigo -->
+	<SupportURL>http://forums.indigodomo.com/viewforum.php?f=192</SupportURL>
+	
+	<!-- All plugins that monitor other devices will have an update action -->
+	<Action id="update" deviceFilter="self">
+		<Name>Update</Name>
+		<CallbackMethod>updateDevice</CallbackMethod>
+	</Action>
+	
+	<Action id="resetAlarm" deviceFilter="self">
+		<Name>Reset alarm state</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="manualOff" deviceFilter="self">
+		<Name>Force currently On alarm to be Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="sep1"/>
+	
+	<Action id="increaseHour" deviceFilter="self">
+		<Name>Increase Hours</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="decreaseHour" deviceFilter="self">
+		<Name>Decrease Hours</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="sep2"/>
+	
+	<Action id="increaseDuration" deviceFilter="self">
+		<Name>Increase duration of alarm</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="decreaseDuration" deviceFilter="self">
+		<Name>Decrease duration of alarm</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="sep2a"/>
+	
+	<Action id="increaseMinute" deviceFilter="self">
+		<Name>Increase Minute</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="decreaseMinute" deviceFilter="self">
+		<Name>Decrease Minute</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="sep3"/>
+	
+	<Action id="turnOn" deviceFilter="self">
+		<Name>Turn On Alarm</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="turnOff" deviceFilter="self">
+		<Name>Turn Off Alarm</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="toggle" deviceFilter="self">
+		<Name>Toggle Alarm On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="sep4"/>
+	
+	<Action id="toggleMonday" deviceFilter="self">
+		<Name>Toggle Monday On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="toggleTuesday" deviceFilter="self">
+		<Name>Toggle Tuesday On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="toggleWednesday" deviceFilter="self">
+		<Name>Toggle Wednesday On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="toggleThursday" deviceFilter="self">
+		<Name>Toggle Thursday On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="toggleFriday" deviceFilter="self">
+		<Name>Toggle Friday On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="toggleSaturday" deviceFilter="self">
+		<Name>Toggle Saturday On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+	<Action id="toggleSunday" deviceFilter="self">
+		<Name>Toggle Sunday On/Off</Name>
+		<CallbackMethod>deviceActions</CallbackMethod>
+	</Action>
+	
+</Actions>
